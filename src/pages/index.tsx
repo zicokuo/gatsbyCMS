@@ -1,14 +1,11 @@
-import React, {Component, useEffect, useState} from 'react';
-import {graphql, useStaticQuery} from "gatsby";
+import React, { Component, useEffect, useState } from 'react';
+import { graphql, useStaticQuery } from "gatsby";
 import gql from "graphql-tag";
-
+import { Query, useQuery } from "react-apollo";
 
 import '../styles/index.css';
 
-const Index = (): JSX.Element => {
-    const
-        apiText = `
-        query Query {
+const apiText = `query Query {
                 shopifyProduct(title: {}, priceRange: {}) {
                     id
                     title
@@ -33,9 +30,39 @@ const Index = (): JSX.Element => {
                         id
                     }
                 }
-            }`,
-        res = useStaticQuery(graphql(apiText)),
-        dyRes = gql(apiText),
+            }`;
+            
+const GET_PROD = gql(apiText);
+const IndexPage = ({ data }): JSX.Element => {
+    const
+        res = useStaticQuery(graphql`query Query {
+            shopifyProduct(title: {}, priceRange: {}) {
+                id
+                title
+                description
+                priceRange {
+                    minVariantPrice {
+                        amount
+                        currencyCode
+                    }
+                    maxVariantPrice {
+                        amount
+                        currencyCode
+                    }
+                }
+                vendor
+                shopifyId
+                availableForSale
+                variants {
+                    id
+                }
+                options {
+                    id
+                }
+            }
+        }`),
+        dyRes = useQuery(GET_PROD),
+        product = data.shopifyProduct,
         [searchWord, setSearchWord] = useState('');
 
     return (
@@ -46,7 +73,7 @@ const Index = (): JSX.Element => {
                     <input
                         type="text"
                         ref={(input: string) => setSearchWord(input)}
-                        placeholder={'enter product title to search...'}/>
+                        placeholder={'enter product title to search...'} />
                     <button>search</button>
                 </label>
             </div>
@@ -55,11 +82,9 @@ const Index = (): JSX.Element => {
             <p>{res.shopifyProduct.id ?? '没有结果'}</p>
             <p>{res.shopifyProduct.description}</p>
             <h3>动态查询</h3>
-            <Query>
-                
-            </Query>
+            <p>{{ dyRes }}</p>
         </main>
     );
-}
+};
 
-export default Index;
+export default IndexPage;

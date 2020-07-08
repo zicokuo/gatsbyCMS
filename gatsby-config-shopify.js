@@ -66,6 +66,13 @@ module.exports = {
         //         },
             },
         },
+        {
+            resolve: `gatsby-plugin-apollo-shopify`,
+            options: {
+                shopName: `liyuteamdev.myshopify.com`,
+                accessToken: `35e26ae582a726141b9d641159f7cde9`,
+            },
+        },
 
         // {
         //     resolve: 'gatsby-source-shopify-admin',

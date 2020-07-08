@@ -1,4 +1,4 @@
-const {plugins} = require("./gatsby-config-shopify");
+const shopifyConfig = require("./gatsby-config-shopify");
 
 module.exports = {
     siteMetadata: {
@@ -53,5 +53,5 @@ module.exports = {
                 basePath: `/blog`,
             },
         },
-        ...plugins],
+        ...shopifyConfig.plugins],
 };
