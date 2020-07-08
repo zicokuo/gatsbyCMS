@@ -1,20 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import '../styles/index.css';
+import {graphql, useStaticQuery} from "gatsby";
 
-function Index() {
-    const [date, setDate] = useState(null);
-    useEffect(() => {
-        async function getDate() {
-            const res = await fetch('/api/date');
-            const newDate = await res.text() ;
-            setDate(newDate as any);
+
+const Index = (): JSX.Element => {
+    const res = useStaticQuery(graphql`
+        query Query {
+            shopifyProduct(title: {}, priceRange: {}) {
+                id
+                title
+                description
+                priceRange {
+                    minVariantPrice {
+                        amount
+                        currencyCode
+                    }
+                    maxVariantPrice {
+                        amount
+                        currencyCode
+                    }
+                }
+                vendor
+                shopifyId
+                availableForSale
+                variants {
+                    id
+                }
+                options {
+                    id
+                }
+            }
         }
-        getDate().then(r => r);
-    }, []);
+    `);
+
     return (
         <main>
             <p>Hello , Gatsby </p>
-            <p>{date ? date : 'Loading date...'}</p>
+            <p>
+                {res.shopifyProduct.id}
+            </p>
+            <p>
+                {res.shopifyProduct.title}
+            </p>
+            <p>
+                {res.shopifyProduct.description}
+            </p>
         </main>
     );
 }
