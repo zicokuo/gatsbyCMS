@@ -53,9 +53,8 @@ const
     IndexPage = (): JSX.Element => {
         const
             res = useStaticQuery(ALL_PRODUCT),
-            client = useApolloClient(),
             {loading, error, data} = useQuery(ALL_PRODUCT_DY),
-            [dyRes, setDyRes] = useState(data),
+            [dyRes, setDyRes] = useState(null),
             [searchWord, setSearchWord] = useState(''),
             onFinishHandler = (props: { keyword: string }) => {
                 let word = searchWord
