@@ -38,7 +38,7 @@ module.exports = {
                 // List of collections you want to fetch.
                 // Possible values are: 'shop' and 'content'.
                 // Defaults to ['shop', 'content'].
-                includeCollections: ["shop", "content"],
+                includeCollections: ["shop", "content","product"],
 
                 // Allow overriding the default queries
                 // This allows you to include/exclude extra fields when sourcing nodes
@@ -47,23 +47,23 @@ module.exports = {
                 // You will need to include all the fields you want available for a
                 // specific key. View the `shopifyQueries Defaults` section below for a
                 // full list of keys and fields.
-        //         shopifyQueries: {
-        //             products: `
-        //   query GetProducts($first: Int!, $after: String) {
-        //     products(first: $first, after: $after) {
-        //       pageInfo {
-        //         hasNextPage
-        //       }
-        //       edges {
-        //         cursor
-        //         node {
-        //           availableForSale
-        //         }
-        //       }
-        //     }
-        //   }
-        // `,
-        //         },
+                // shopifyQueries: {
+                //  products: `
+                //   query GetProducts($first: Int!, $after: String) {
+                //     products(first: $first, after: $after) {
+                //       pageInfo {
+                //         hasNextPage
+                //       }
+                //       edges {
+                //         cursor
+                //         node {
+                //           availableForSale
+                //         }
+                //       }
+                //     }
+                //   }
+                // `,
+                // },
             },
         },
         {
@@ -72,21 +72,6 @@ module.exports = {
                 shopName: `liyuteamdev.myshopify.com`,
                 accessToken: `35e26ae582a726141b9d641159f7cde9`,
             },
-        },
-
-        // {
-        //     resolve: 'gatsby-source-shopify-admin',
-        //     options: {
-        //         storeName: `liyuteamdev.myshopify.com`,
-        //         apiKey: `310e4a1ac9c1251460cf5188a335c87b`,
-        //         verbose: true,
-        //         onlyPublished: false, // only show products that are currently published on the 'publication' aka the private app
-        //         pollInterval: 1000 * 10,
-        //         imagesMetafields: {
-        //             product: null,
-        //             collection: null
-        //         }
-        //     },
-        // },
+        }
     ]
 }

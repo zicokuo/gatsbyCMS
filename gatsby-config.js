@@ -53,5 +53,5 @@ module.exports = {
                 basePath: `/blog`,
             },
         },
-        ...shopifyConfig.plugins],
+        ...shopifyConfig.plugins]
 };
