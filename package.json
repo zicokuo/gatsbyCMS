@@ -21,7 +21,7 @@
     "gatsby-plugin-typography": "^2.5.9",
     "gatsby-source-shopify": "^3.2.19",
     "gatsby-source-shopify-admin": "^0.1.3",
-    "gatsby-theme-blog": "^2.0.0",
+    "gatsby-theme-blog": "^4.0.0",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.10.3",
     "isomorphic-fetch": "^2.2.1",
